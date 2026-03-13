@@ -1,3 +1,8 @@
 venv/
 __pycache__/
+.env.env
+chroma_data/
 .env
+chroma_data/
+.env
+chroma_data/
