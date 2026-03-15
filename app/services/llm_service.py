@@ -2,19 +2,16 @@ import os
 from groq import Groq
 from dotenv import load_dotenv
 
-# Cargamos las variables ocultas del archivo .env
 load_dotenv()
 
-# Inicializamos el cliente. Automáticamente buscará la GROQ_API_KEY
 client = Groq()
 
 def generate_answer(question: str, context_chunks: list[str]) -> str:
     """Toma la pregunta y los pedazos de PDF, y redacta una respuesta humana"""
     
-    # Unimos los pedazos de texto que encontraste en un solo gran bloque
     context = "\n\n---\n\n".join(context_chunks)
     
-    # Le damos instrucciones estrictas a la IA
+    # Instrucciones estrictas a la IA
     system_prompt = f"""
     Eres LexiQ, un asistente experto y profesional analizando documentos. 
     Responde a la pregunta del usuario basándote ÚNICAMENTE en el contexto proporcionado abajo.
@@ -26,7 +23,7 @@ def generate_answer(question: str, context_chunks: list[str]) -> str:
     """
     
     try:
-        # Llamamos a Groq usando el modelo Llama 3 de Meta (súper rápido y eficiente)
+        
         chat_completion = client.chat.completions.create(
             messages=[
                 {
