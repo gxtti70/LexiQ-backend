@@ -33,7 +33,7 @@ async def upload_document(file: UploadFile = File(...)):
     }
 @router.post("/ask")
 async def ask_question(request: QuestionRequest):
-    # 1. Buscar la información relevante (Retrieval)
+
     context_chunks = retrieve_context(request.question)
     
     if not context_chunks:
@@ -43,16 +43,16 @@ async def ask_question(request: QuestionRequest):
             "retrieved_context": []
         }
         
-    # 2. Generar la respuesta humana usando el servicio LLM
+    #  Generar la respuesta humana usando el servicio LLM
     try:
         respuesta_ia = generate_answer(request.question, context_chunks)
     except Exception as e:
-        # Por si la IA falla (ej. por falta de RAM), devolvemos el error
+        # Por si la IA falla 
         respuesta_ia = f"Error al generar respuesta: {str(e)}"
     
     return {
         "question": request.question,
-        "answer": respuesta_ia,  # Esta es la llave que Angular necesita
+        "answer": respuesta_ia,  
         "retrieved_context": context_chunks,
         "status": "Éxito: Respuesta generada por LLM."
     }
