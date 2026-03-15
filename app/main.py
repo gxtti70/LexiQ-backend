@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware # 1. Importación necesaria
+from fastapi.middleware.cors import CORSMiddleware 
 from app.api.routes import router as api_router
 
 app = FastAPI(
@@ -8,14 +8,13 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# 2. Configuración del middleware de CORS
-# Esto permite que el frontend (puerto 4200) se comunique con el backend (puerto 8000)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # En desarrollo se usa "*" para permitir cualquier origen
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"], # Permite todos los métodos (GET, POST, etc.)
-    allow_headers=["*"], # Permite todas las cabeceras
+    allow_headers=["*"], 
 )
 
 # Conectamos nuestras rutas modulares bajo el prefijo /api
