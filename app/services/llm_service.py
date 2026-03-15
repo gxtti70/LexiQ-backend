@@ -38,7 +38,7 @@ def generate_answer(question: str, context_chunks: list[str]) -> str:
                     "content": question,
                 }
             ],
-            model="llama3-8b-8192", 
+            model="llama-3.1-8b-instant", 
             temperature=0.2, # Temperatura baja para que sea analítico y no creativo/inventivo
         )
         return chat_completion.choices[0].message.content
