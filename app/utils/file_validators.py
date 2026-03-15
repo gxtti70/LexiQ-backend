@@ -4,7 +4,7 @@ from fastapi import HTTPException
 ALLOWED_EXTENSIONS = {"pdf", "docx", "xlsx", "pptx"}
 
 def validate_file_extension(filename: str) -> str:
-    # Extraemos la extensión del nombre del archivo
+
     ext = filename.split(".")[-1].lower()
     
     if ext not in ALLOWED_EXTENSIONS:
